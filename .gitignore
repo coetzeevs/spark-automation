@@ -1,0 +1,74 @@
+MANIFEST
+build
+_build
+docs/man/*.gz
+docs/source/api/generated
+docs/source/config.rst
+docs/gh-pages
+notebook/i18n/*/LC_MESSAGES/*.mo
+notebook/i18n/*/LC_MESSAGES/nbjs.json
+notebook/static/components
+notebook/static/style/*.min.css*
+notebook/static/*/js/built/
+notebook/static/*/built/
+notebook/static/built/
+notebook/static/*/js/main.min.js*
+notebook/static/lab/*bundle.js
+node_modules
+*.py[co]
+__pycache__
+*.egg-info
+*~
+*.bak
+.ipynb_checkpoints
+.tox
+.DS_Store
+\#*#
+.#*
+.coverage
+dist
+src/libs
+
+*.swp
+*.map
+.idea/
+.vscode/
+Read the Docs
+config.rst
+
+/.project
+/.pydevproject
+*venv
+
+
+# Thumbnails
+._*
+
+# Files that might appear in the root of a volume
+.DocumentRevisions-V100
+.fseventsd
+.Spotlight-V100
+.TemporaryItems
+.Trashes
+.VolumeIcon.icns
+.com.apple.timemachine.donotpresent
+
+# Directories potentially created on remote AFP share
+.AppleDB
+.AppleDesktop
+Network Trash Folder
+Temporary Items
+.apdisk
+
+# (Potentially) Very Large Files
+*.csv
+FilterBucket/cloud_sql_proxy
+SCV/ETL/Sailthru/all_users.csv
+
+IBT/untitled folder/
+replenishmentmodel/Availability_V1.csv
+replenishmentmodel/Availability_V1.csv.zip
+replenishmentmodel/clusters_shenine.csv
+recommendations/datafile.csv
+
+*.xlsx
