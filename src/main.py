@@ -58,8 +58,12 @@ if __name__ == '__main__':
 
     os.environ.update(environment)
     sc = pyspark.SparkContext(appName=args.job_name, environment=environment)
-    sc.addPyFile('dist/jobs.zip')
-    sc.addPyFile('dist/libs.zip')
+
+    if os.path.exists('dist/jobs.zip'):
+        sc.addPyFile('dist/jobs.zip')
+    if os.path.exists('dist/libs.zip'):
+        sc.addPyFile('dist/libs.zip')
+
     job_module = importlib.import_module(f'jobs.{args.job_name}')
 
     start = time.time()

@@ -127,6 +127,29 @@ First clone this repo and `cd` into the repo directory on your local machine. TH
     for Kubernetes to be able to run our Spark application.
 
 Up to this point, if you've been able to run each command without error, you should be able to run the following command and have it return three things: 1) a spark-operator Pod,
-2) a spark-operator Deployment, and 3) a spark-operator Replica Set. If their statuses all reflect "green" (i.e. everything is in a Ready state), we can move on. If not, see the Debugging
-Your Deployment part at the end. 
+2) a spark-operator Deployment, and 3) a spark-operator Replica Set. 
+```bash
+kubectl get all
+```
+If their statuses all reflect "green" (i.e. everything is in a Ready state), we can move on. If not, see the _Debugging Your Deployment_ part at the end. 
 
+### The Makefile and what it's for
+A Makefile, from my limited understanding, is used to wrap commands and procedures that run in bash, into a single command. I.e. aliasing to a certain extent. There are two commands
+in the Makefile for this project that are quite important to know. 1) `make build` and 2) `make pips`. The build command is the primary one to be used when developing a new application.
+It copy's the files and folders from the `src` directory to a folder called `dist` and zips the files and folders which will be submitted to the application. Of course, if you make 
+any changes to your application and run `make build` you'll need to rebuild your Job image using Docker again, and re-upload it to the cloud repository. 
+
+```text
+Side note: I've noticed that the right overwrite actions aren't always adhered when pushing a Docker image to the Container Registry, using the same version tag. I suggest either changing
+the version tag -- you would then need to change it in the YAML file too -- or simply deleting the current version in the Container Registry before uploading it again. 
+
+```
+
+The pips command is something I rarely use since I try and resolve my dependencies within the Dockerfiles instead of submitting dependencies through the job submission step.
+In short, it installs the specified dependencies (listed in the `requirements.txt` file) into a specified directory, in this case `src/libs`. This then gets compressed and copied along with the other
+files and folders in the `make build` command.
+
+### What we're trying to run (and how it fits together)
+So we've got the scaffold in place and it's all ready to go. But first you need to understand how the job is set up and how it works.
+
+We start with the `main.py` file and some important lines from it. 
